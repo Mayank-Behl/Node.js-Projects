@@ -1,4 +1,42 @@
-const http = require("http");
+//using express
+const express = require("express");
+const app = express();
+const fs = require("fs");
+const port = 8080;
+
+app.get("/", (req, res) => {
+  fs.readFile("index.html", function (err, data) {
+    return res.end(data);
+  });
+});
+app.get("/index.html", (req, res) => {
+  fs.readFile("index.html", function (err, data) {
+    return res.end(data);
+  });
+});
+app.get("/about.html", (req, res) => {
+  fs.readFile("about.html", function (err, data) {
+    return res.end(data);
+  });
+});
+app.get("/contact.html", (req, res) => {
+  fs.readFile("contact.html", function (err, data) {
+    return res.end(data);
+  });
+});
+app.get("*", function (req, res) {
+  fs.readFile("404.html", function (err, data) {
+    return res.end(data);
+  });
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}!`);
+});
+
+//Using http 
+
+/* const http = require("http");
 const fs = require("fs");
 
 http.createServer(function(req,res){
@@ -22,3 +60,4 @@ http.createServer(function(req,res){
         })
     }
 }).listen(8080);
+ */
