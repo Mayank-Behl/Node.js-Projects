@@ -1,10 +1,21 @@
 //using express
 const express = require("express");
+const path = require("path");
 const app = express();
 const fs = require("fs");
 const port = 8080;
 
-app.get("/", (req, res) => {
+//Using Path and accessing the public folder template loading of the website was done with the middleware
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}!`);
+});
+
+//Below is the code for just using the basic app without the css 
+
+/* app.get("/", (req, res) => {
   fs.readFile("index.html", function (err, data) {
     return res.end(data);
   });
@@ -28,11 +39,9 @@ app.get("*", function (req, res) {
   fs.readFile("404.html", function (err, data) {
     return res.end(data);
   });
-});
+}); */
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`);
-});
+
 
 //Using http 
 
