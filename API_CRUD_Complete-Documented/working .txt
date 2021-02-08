@@ -1,0 +1,49 @@
+EXPRESS FLOW
+
+In a project multiple services 
+
+🠖for every service there we be a different request 
+
+🠖for different request there would a unique url 
+
+🠖for each url there is different handler 
+
+**|| This is called routing || Controller of the MVC**
+
+The main logic is that the main file that is index.js will get the request of a specific service via url. 
+
+Then by doing the routing mentioned below the request of the specific request is handled in the routes .
+
+So the index.js only have the initial url that is the service it is giving and futher it routes it to the route folder/ serviceName and all the respective request are handled there.
+
+**|| How to do Routing ||**
+
+So this could be done in the main app/index.js but that would be poorly managed. 
+
+🠖Create a different folder called routes.
+
+🠖Create a new js file with the name of the serviceName.js
+
+🠖Import express and const router= express.Router(); this will help in back and forth of request between app.js and the service as it will send the done work back to the main app.js in the end export it.
+
+🠖Now for that specific service handle all the type of request(get/post...) with the respective url name.
+
+🠖Now to access the above service we need to tell app/index.js the actual route of the url request.
+
+🠖That is create a const RouteServiceName = require(routed path) 🠖 Then use middleware app.use('/urlNameThat needs to be redirected to the route/service', RouteServiceName );
+
+🠖 Then export the router so that it can finally communicated with app.js module.exports = router;
+
+ **- - The above part was the controller of the MVC framework- -**
+
+**||The Model Part that is creating the schema for the database||**
+
+🠖 Create a separate folder called Models in the root directory.
+
+🠖 Create a serviceName.js file ( similar to the name as that of the router service).
+
+🠖 Require mongoose and create the respective schema.
+
+🠖 Then export the schema by module.exports - mongoose.model('Name_In_Accordance_To_DB', schemaName);
+
+🠖 Now require the schema file in the route dealing with the url and then do the required thing( try using async/await).
